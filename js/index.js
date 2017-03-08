@@ -89,11 +89,25 @@ function checkName(tmp) {
     }
   }
 
-
+/* Controlla se i campi del form sono vuoti e li segnala*/
   function checkFieldLogIn(tmp) {
-    if (tmp.email.value == "" || tmp.psw.value == "")
-      return false;
-    else {
-      return true;
+    var error = true;
+
+    if (tmp.username.value == "") {
+      tmp.username.style.borderColor = "#f00";
+      error = false;
     }
-  }
+    else {
+      tmp.username.style.borderColor = "#ccc";
+    }
+
+    if (tmp.psw.value == "") {
+      tmp.psw.style.borderColor = "#f00";
+      error = false;
+      }
+    else {
+      tmp.username.style.borderColor = "#ccc";
+    }
+
+    return error;
+}

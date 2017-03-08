@@ -3,17 +3,16 @@
 $row = ["IDuser"=>"","name"=>"","surname"=>"","email"=>"","birthday"=>"","gender"=>"","password"=>""];
 
 /* Read and compare the email and password */
-function read_compare($conn, $email, $psw) {
-  if ($stmt = $conn->prepare("SELECT * FROM User WHERE email=?;")) { /* Check that there aren't errors */
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($row['IDuser'], $row['name'], $row['surname'], $row['email'], $row['birthday'], $row['gender'], $row['password']); /* Bind result query into an associative array*/
-    $stmt->fetch();
-
-    if (password_verify($psw, $row['password'])) { /* Verifies that a password matches a hash */
-      $stmt->close();
-      return $row; /* Return an associative array */
-    }
+function read_compare($conn, $username, $psw) {
+  if ($stmt = $conn->prepare("SELECT * FROM User WHERE username=?;")) { /* Check that there aren't errors */
+    if ($stmt->bind_param("s", $username))
+      if ($stmt->execute())
+        if ($stmt->bind_result($row['IDuser'], $row['name'], $row['surname'], $row['email'], $row['birthday'], $row['gender'], $row['password'])) /* Bind result query into an associative array*/
+          if ($stmt->fetch())
+            if (password_verify($psw, $row['password'])) { /* Verifies that a password matches a hash */
+              $stmt->close();
+              return $row; /* Return an associative array */
+            }
   }
   $stmt->close();
   echo "Sorry, your login has been unsuccessful. Please try to login again."; /* Show a message of error with SQL statement, error number and error text */
@@ -73,7 +72,7 @@ function insert($conn, $name, $surname, $email, $birthDate, $gender, $psw) {
   if ($stmt = $mysqli->prepare("INSERT INTO User (name, surname, email, birthday, gender, password) VALUES (?,?,?,?,?,?)")) { /* Check that there aren't errors */
     $stmt->bind_param("ssssis", $name, $surname, $newEmail, $birthDate, $gender, $email); /* bind parameters for markers */
     if ($stmt->execute()) {
-      $stmt->close(); 
+      $stmt->close();
       echo "New records created successfully";
       return 0;
     }

@@ -23,6 +23,8 @@
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div class="animation-wrapper">
@@ -35,12 +37,12 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <form class="form-horizontal">
+          <form class="form-horizontal" action="php/login.php" method="post" onsubmit="return checkFieldLogIn(this)">
             <h1 class="text-center">LOGIN</h1>
             <br>
-            <input class="form-control" placeholder="Username"/>
-            <input class="form-control" placeholder="Password"/>
-            <button class="btn btn-primary btn-block">LOG IN</button>
+            <input type="text" name="username" class="form-control" placeholder="Username"/>
+            <input type="password" name="psw" class="form-control" placeholder="Password"/>
+            <button type="submit" class="btn btn-primary btn-block">LOG IN</button>
             <p class="text-right"><a href="">Password dimenticata?</a></p>
           </form>
         </div> <!-- .panel panel-default -->

@@ -1,10 +1,3 @@
-<?php
-// Start the session
-session_start();
-include "checkDB.php";
-include "crudDB.php";
-?>
-
 <!DOCTYPE html>
 <html lang="it-IT">
 <head>
@@ -34,42 +27,46 @@ include "crudDB.php";
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-  <?php
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) == true && empty($_POST["username"]) == false && empty($_POST["psw"]) == false)
-  {
-    $username = checkPsw($_POST["username"]); /* Creare funzione ad hoc*/
-    $psw = checkPsw($_POST["psw"]);
-
-    if ($username != -1 && $psw != -1)
-    {
-      require "connectDB.php";
-      $row = read_compare($conn, $username, $psw);
-
-      if ($row != -1 && $row["firstLogin"] == 1) {
-        $_SESSION["IDutente"] = $row["IDutente"];
-        header("Location: ../firstLogin.php");
-        $conn->close();
-      }
-      elseif ($row != -1 && $row["firstLogin"] == 0) {
-        $_SESSION["IDutente"] = $row["IDutente"];
-        echo "PAGINA INIZIALE";
-        $conn->close();
-      }
-      elseif ($row == -1) {
-        $conn->close();
-        header("Location: ../index.php?error=true");
-      }
-
-    }
-  else {
-    header("Location: ../index.php?error=true");
-  }
-}
-else {
-  header("Location: ../index.php");
-}
-?>
+  <div class="animation-wrapper">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+  </div> <!-- .animation-wrapper -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <form class="form-horizontal" action="php/login.php" method="post" onsubmit="return checkFieldLogIn(this)">
+            <p class="text-center">Scegli una nuova password, dovrà essere differente da quella attuale.</p>
+            <input type="password" name="lastPsw" class="form-control" placeholder="Attuale password"/>
+            <input type="password" name="Newpsw" class="form-control" autocomplete="off" placeholder="Nuova password" onblur="checkPsw()"/>
+            <input type="password" name="validatePsw" class="form-control" autocomplete="off" placeholder="Conferma la password" onblur="checkPsw()"/>
+            <button type="submit" name="changePsw" class="btn btn-primary btn-block">Cambia Password</button>
+            <p class="text-right"><a href="">Password dimenticata?</a></p>
+          </form>
+        </div> <!-- .panel panel-default -->
+      </div> <!-- .col-md-4 -->
+      <div class="col-md-4"></div>
+    </div> <!-- .row -->
+  </div> <!-- .container -->
+  <script src="../js/index.js"></script>
 
 </body>
 </html>
+
+<?php
+function showError() {
+  if (isset($_GET["error"])) {
+    if ($_GET["error"] == "true") {
+      echo "<p class='text-danger bg-danger'> Sorry, your login has been unsuccessful. Please try to login again.</p>";
+    }
+    else {
+      echo "<br>";
+    }
+  }
+  else {
+    echo "<br>";
+  }
+}
+?>

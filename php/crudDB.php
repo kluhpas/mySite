@@ -1,22 +1,19 @@
 <?php
-
-$row = ["IDuser"=>"","name"=>"","surname"=>"","email"=>"","birthday"=>"","gender"=>"","password"=>""];
-
 /* Read and compare the email and password */
 function read_compare($conn, $username, $psw) {
+  $row = ["username"=>"","psw"=>"","firstLogin"=>"","IDutente"=>""];
   if ($stmt = $conn->prepare("SELECT * FROM User WHERE username=?;")) { /* Check that there aren't errors */
     if ($stmt->bind_param("s", $username))
       if ($stmt->execute())
-        if ($stmt->bind_result($row['IDuser'], $row['name'], $row['surname'], $row['email'], $row['birthday'], $row['gender'], $row['password'])) /* Bind result query into an associative array*/
+        if ($stmt->bind_result($row['username'], $row['psw'], $row['firstLogin'], $row['IDutente'])) /* Bind result query into an associative array*/
           if ($stmt->fetch())
             if (password_verify($psw, $row['password'])) { /* Verifies that a password matches a hash */
               $stmt->close();
               return $row; /* Return an associative array */
             }
   }
+  
   $stmt->close();
-  echo "Sorry, your login has been unsuccessful. Please try to login again."; /* Show a message of error with SQL statement, error number and error text */
-  echo "Error: " . $sql . "<br> (" . $mysqli->errno . ") " . $conn->error;
   return -1;
 }
 

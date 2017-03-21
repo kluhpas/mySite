@@ -39,10 +39,10 @@
         <div class="panel panel-default">
           <form class="form-horizontal" action="php/login.php" method="post" onsubmit="return checkFieldLogIn(this)">
             <h1 class="text-center">LOGIN</h1>
-            <br>
+            <?php showError(); ?>
             <input type="text" name="username" class="form-control" placeholder="Username"/>
             <input type="password" name="psw" class="form-control" placeholder="Password"/>
-            <button type="submit" class="btn btn-primary btn-block">LOG IN</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">LOG IN</button>
             <p class="text-right"><a href="">Password dimenticata?</a></p>
           </form>
         </div> <!-- .panel panel-default -->
@@ -50,7 +50,21 @@
       <div class="col-md-4"></div>
     </div> <!-- .row -->
   </div> <!-- .container -->
-  <script src="js/index.js"></script>
-
 </body>
 </html>
+
+<?php
+function showError() {
+  if (isset($_GET["error"])) {
+    if ($_GET["error"] == "true") {
+      echo "<p class='text-danger bg-danger'> Sorry, your login has been unsuccessful. Please try to login again.</p>";
+    }
+    else {
+      echo "<br>";
+    }
+  }
+  else {
+    echo "<br>";
+  }
+}
+?>

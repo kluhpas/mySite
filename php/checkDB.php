@@ -7,10 +7,12 @@ function checkEmail($tmp) {
 }
 
 function checkPsw($tmp) {
-	if (strpos($tmp, ' ') === true)
+	if (strpos($tmp, ' ') !== false) {
 		return -1;
-	else
+	}
+	else {
 		return $tmp;
+	}
 }
 
 function checkPsw_hash($tmp) {

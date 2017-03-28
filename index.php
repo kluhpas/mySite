@@ -50,6 +50,7 @@
       <div class="col-md-4"></div>
     </div> <!-- .row -->
   </div> <!-- .container -->
+  <script src="js/index.js"></script>
 </body>
 </html>
 
@@ -57,7 +58,7 @@
 function showError() {
   if (isset($_GET["error"])) {
     if ($_GET["error"] == "true") {
-      echo "<p class='text-danger bg-danger'> Sorry, your login has been unsuccessful. Please try to login again.</p>";
+      echo "<p class='text-danger bg-danger'> Sorry, your login has been unsuccessful. Please try again.</p>";
     }
     else {
       echo "<br>";

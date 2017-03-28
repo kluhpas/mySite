@@ -1,0 +1,22 @@
+body {
+    padding-top: 100px; }
+
+form {
+	padding: 20px; }
+
+p {
+margin: 0px; }
+
+.form-horizontal .form-group {
+ margin-left: 0px;
+ margin-right: 0px;}
+
+.btn {
+	border-radius: 0px;
+  margin-bottom: 10px }
+
+.form-control {
+	border-radius: 0px; }
+
+.inner {
+  margin:0px !important;}

@@ -35,14 +35,12 @@ function checkName(tmp) {
     {
       tmp.focus();
       tmp.value="";
-      tmp.style.borderColor = "red";
-      tmp.style.boxShadow = "inset 0 0 3px 2px red";
-      tmp.placeholder="Please, insert a valid email";
+      tmp.style.borderColor = "#f00";
+      tmp.placeholder="Inserisci una email valida";
     }
     else if (tmp.value != "")
     {
-      tmp.style.borderColor = "LightGray";
-      tmp.style.boxShadow = "none";
+      tmp.style.borderColor = "#ccc";
   	}
   }
 

@@ -43,7 +43,7 @@
             <input type="text" name="username" class="form-control" placeholder="Username"/>
             <input type="password" name="psw" class="form-control" placeholder="Password"/>
             <button type="submit" name="submit" class="btn btn-primary btn-block">LOG IN</button>
-            <p class="text-right"><a href="">Password dimenticata?</a></p>
+            <p class="text-right"><a href="php/lostPsw.php">Password dimenticata?</a></p>
           </form>
         </div> <!-- .panel panel-default -->
       </div> <!-- .col-md-4 -->
@@ -58,7 +58,7 @@
 function showError() {
   if (isset($_GET["error"])) {
     if ($_GET["error"] == "true") {
-      echo "<p class='text-danger bg-danger'> Sorry, your login has been unsuccessful. Please try again.</p>";
+      echo "<p class='text-danger bg-danger'> Login fallito, riprova.</p>";
     }
     else {
       echo "<br>";

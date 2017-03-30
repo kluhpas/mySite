@@ -7,7 +7,7 @@ function checkEmail($tmp) {
 }
 
 function checkPsw($tmp) {
-	if (strpos($tmp, ' ') !== false) {
+	if (strpos($tmp, ' ') === true || strlen($tmp) < 8) {
 		return -1;
 	}
 	else {
@@ -16,7 +16,7 @@ function checkPsw($tmp) {
 }
 
 function checkPsw_hash($tmp) {
-	if (strpos($tmp, ' ') === true)
+	if (strpos($tmp, ' ') === true || strlen($tmp) < 8)
 		return -1;
 	else
 		return password_hash($tmp, PASSWORD_DEFAULT);

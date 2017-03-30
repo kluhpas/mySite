@@ -7,6 +7,6 @@
   session_destroy();
 
   /* Redirect to a different page in the current directory that was requested */
-  header("Location: http://rotandrea.altervista.org/project/mySite/index.php");
+  header("Location: ../index.php");
   exit;
 ?>

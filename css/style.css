@@ -1,5 +1,5 @@
 body {
-    padding-top: 100px; }
+ background-color: #F5F5F5; }
 
 form {
 	padding: 20px; }
@@ -7,9 +7,30 @@ form {
 p {
 margin: 0px; }
 
-.form-horizontal .form-group {
- margin-left: 0px;
- margin-right: 0px;}
+.navbar {
+	background-color: #364545;
+	border-color: transparent;
+  color: #fff;}
+
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-brand {
+	color: #fff; }
+
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-brand:hover {
+	color: #ccc; }
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+	color: #ccc;
+  background-color: transparent; }
+
+.navbar-inverse .navbar-toggle {
+	border: none; }
+
+.navbar-inverse .navbar-toggle .icon-bar {
+	background-color: #fff; }
 
 .btn {
 	border-radius: 0px;
@@ -20,3 +41,12 @@ margin: 0px; }
 
 .inner {
   margin:0px !important;}
+
+/*lostPsw.php*/
+#lostEmail {
+  margin-bottom: 10px; }
+
+/*firstLogin.php*/
+#formPsw #formPswGroup {
+ margin-left: 0px;
+ margin-right: 0px;}

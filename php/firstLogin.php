@@ -1,3 +1,15 @@
+<?php
+// Start the session
+session_start();
+if (isset($_GET["ID"]) && isset($_GET["hash"])) {
+  $_SESSION["IDutente"] = $_GET["ID"];
+  $_SESSION["hashPsw"] = $_GET["hash"];
+}
+elseif (!isset($_GET["error"])) {
+  header("Location: ../index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="it-IT">
 <head>
@@ -26,24 +38,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="padding-top: 100px">
   <div class="container">
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <form class="form-horizontal" name="pswForm" action="php/login.php" method="post" onsubmit="return checkFieldForm(this)">
+          <form class="form-horizontal" name="pswForm" id="formPsw" action="validate.php" method="post" onsubmit="return checkFieldForm(this)">
             <h4 class="text-center">Scegli una password</h4>
             <h5 class="text-center">Non può contenere spazi e deve essere composta da almeno 8 caratteri.</h5>
-            <div class="form-group">
-              <input type="password" name="newPsw" id="newPsw" class="form-control" autocomplete="off" placeholder="Nuova password" onkeyup="CheckPasswordStrength(this.value)" onblur="checkPsw()"/>
+            <?php showError(); ?>
+            <div class="form-group" id="formPswGroup">
+              <input type="password" name="newPsw" class="form-control" autocomplete="off" placeholder="Inserisci una password" onkeyup="CheckPasswordStrength(this.value)" onblur="checkPsw()"/>
               <p id="password_strength"></p>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="formPswGroup">
               <input type="password" name="validatePsw" class="form-control" autocomplete="off" placeholder="Conferma la password" onblur="checkPsw()"/>
               <p id="password_check"></p>
             </div>
-            <button type="submit" name="changePsw" class="btn btn-primary btn-block">Cambia Password</button>
+            <button type="submit" name="setPsw" class="btn btn-primary btn-block">Cambia Password</button>
           </form>
         </div> <!-- .panel panel-default -->
       </div> <!-- .col-md-4 -->
@@ -165,3 +178,19 @@
   </script>
 </body>
 </html>
+
+<?php
+function showError() {
+  if (isset($_GET["error"])) {
+    if ($_GET["error"] == "true") {
+      echo "<p class='text-center text-danger bg-danger'> Password inserite non corrette.</p></br>";
+    }
+    else {
+      echo "<br>";
+    }
+  }
+  else {
+    echo "<br>";
+  }
+}
+?>

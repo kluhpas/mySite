@@ -1,37 +1,36 @@
 <?php
 /* Read and compare the email and password */
 function read_compare($conn, $username, $psw) {
-  $row = ["username"=>"","psw"=>"","firstLogin"=>"","IDutente"=>""];
+  $row = ["username"=>"","psw"=>"","IDutente"=>""];
   if ($stmt = $conn->prepare("SELECT * FROM User WHERE username=?;")) { /* Check that there aren't errors */
     if ($stmt->bind_param("s", $username))
       if ($stmt->execute())
-        if ($stmt->bind_result($row['username'], $row['psw'], $row['firstLogin'], $row['IDutente'])) /* Bind result query into an associative array*/
+        if ($stmt->bind_result($row['username'], $row['psw'], $row['IDutente'])) /* Bind result query into an associative array*/
           if ($stmt->fetch())
             if (password_verify($psw, $row['password'])) { /* Verifies that a password matches a hash */
               $stmt->close();
               return $row; /* Return an associative array */
             }
   }
-  
+
   $stmt->close();
   return -1;
 }
 
-/* read row with email */
-function read($conn, $email) {
-  if ($stmt = $conn->prepare("SELECT * FROM User WHERE email=?;")) { /* Check that there aren't errors */
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($row['IDuser'], $row['name'], $row['surname'], $row['email'], $row['birthday'], $row['gender'], $row['password']); /* Bind result query into an associative array*/
-    $stmt->fetch();
-
-    if ($stmt->num_rows === 1) { /* Check that there's a row */
-      $stmt->close();
-      return $row; /* Return an associative array */
-    }
+/* read psw with IDutente */
+function read($conn, $IDutente) {
+  if ($stmt = $conn->prepare("SELECT psw FROM User WHERE IDutente=?;")) { /* Check that there aren't errors */
+    if ($stmt->bind_param("i", $IDutente))
+      if ($stmt->execute())
+        if ($stmt->bind_result($row)) /* Bind result query into a var*/
+          if ($stmt->fetch())
+            if ($stmt->num_rows === 1) { /* Check that there's a row */
+              $stmt->close();
+              return $row; /* Return an associative array */
+            }
   }
+
   $stmt->close();
-  echo "Error: " . $sql . "<br> (" . $mysqli->errno . ") " . $conn->error; /* Show a message of error with SQL statement, error number and error text */
   return -1;
 }
 
@@ -76,6 +75,19 @@ function insert($conn, $name, $surname, $email, $birthDate, $gender, $psw) {
   }
   $stmt->close();
   echo "Error: " . $sql . "<br> (" . $mysqli->errno . ") " . $conn->error; /* Show a message of error with SQL statement, error number and error text */
+  return -1;
+}
+
+/*Set psw*/
+function setPsw($conn, $psw, $IDutente) {
+  if ($stmt = $conn->prepare("UPDATE User SET psw=? WHERE IDutente=?")) { /* Check that there aren't errors */
+    if ($stmt->bind_param("si", $psw, $IDutente))
+      if ($stmt->execute()) {
+        $stmt->close();
+        return 0;
+      }
+  }
+  $stmt->close();
   return -1;
 }
 ?>

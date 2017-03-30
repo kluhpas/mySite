@@ -1,11 +1,9 @@
 body {
- background-color: #F5F5F5; }
+  background-color: #F5F5F5;
+  padding-top: 70px;}
 
 form {
 	padding: 20px; }
-
-p {
-margin: 0px; }
 
 .navbar {
 	background-color: #364545;
@@ -26,8 +24,9 @@ margin: 0px; }
 	color: #ccc;
   background-color: transparent; }
 
-.navbar-inverse .navbar-toggle {
-	border: none; }
+.navbar-toggle {
+	border: none;
+  margin-bottom: auto;}
 
 .navbar-inverse .navbar-toggle .icon-bar {
 	background-color: #fff; }
@@ -50,3 +49,7 @@ margin: 0px; }
 #formPsw #formPswGroup {
  margin-left: 0px;
  margin-right: 0px;}
+
+/*navbar.php*/
+#btnNavbar {
+  font-size: medium; }

@@ -38,13 +38,21 @@ session_start();
   <?php include "navbar.php"  ?>
   <div class="container">
     <div class="row">
-      <div class="col-md-4"></div>
       <div class="col-md-4">
         <div class="panel panel-default">
-        </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+          </br></br></br></br></br>
+        </div> <!-- .panel panel-default -->
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          </br></br></br></br></br>
         </div> <!-- .panel panel-default -->
       </div> <!-- .col-md-4 -->
-      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          </br></br></br></br></br>
+        </div> <!-- .panel panel-default -->
+      </div>
     </div> <!-- .row -->
   </div> <!-- .container -->
   <script src="../js/index.js"></script>

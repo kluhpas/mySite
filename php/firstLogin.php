@@ -38,7 +38,7 @@ elseif (!isset($_GET["error"])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body style="padding-top: 100px">
+<body style="padding-top: 5%">
   <div class="container">
     <div class="row">
       <div class="col-md-4"></div>

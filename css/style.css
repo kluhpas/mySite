@@ -10,9 +10,14 @@ form {
 	border-color: transparent;
   color: #fff;}
 
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border: none; }
+
 .navbar-inverse .navbar-nav>li>a,
 .navbar-inverse .navbar-brand {
-	color: #fff; }
+	color: #fff;
+  transition-duration: 0.4s; }
 
 .navbar-inverse .navbar-nav>li>a:hover,
 .navbar-inverse .navbar-brand:hover {

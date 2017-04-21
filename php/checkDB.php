@@ -1,4 +1,13 @@
 <?php
+function checkTable($tmp) {
+	if (strcmp($tmp, "allievo") == 0)
+		return $tmp;
+	else if (strcmp($tmp, "maestro") == 0)
+		return $tmp;
+	else
+		return -1;
+}
+
 function checkEmail($tmp) {
 	if (preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/',$tmp) != 1)
 	return -1;
@@ -14,6 +23,7 @@ function checkPsw($tmp) {
 		return $tmp;
 	}
 }
+
 
 function checkPsw_hash($tmp) {
 	if (strpos($tmp, ' ') === true || strlen($tmp) < 8)
@@ -52,22 +62,13 @@ function checkGender($tmp) {
 		return -1;
 }
 
-function checkGender($tmp) {
-	if (strcmp($tmp, "1") == 0)
+function checkAgon($tmp) {
+	if (strcmp($tmp, "no") == 0)
 		return 1;
-	else if (strcmp($tmp, "0") == 0)
+	else if (strcmp($tmp, "yes") == 0)
 		return 0;
 	else
 		return -1;
-}
-
-function checkPsw($tmp) {
-	if (strpos($tmp, ' ') === true || strlen($tmp) < 8) {
-		return -1;
-	}
-	else {
-		return $tmp;
-	}
 }
 
 function checkCodFisc($tmp)
@@ -130,7 +131,8 @@ function checkCodFisc($tmp)
 		}
 	}
 	if( chr($s%26 + ord('A')) != $tmp[15] )
-	return -1
+	return -1;
+
 	return $tmp;
 }
 ?>

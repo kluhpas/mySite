@@ -10,7 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) == true && e
   $psw = checkPsw($_POST["psw"]);
 
   if ($username != -1 && $psw != -1) {
-    require "connectDB.php";
+    $servername = "localhost";
+    $username = "root";
+    $dbName = "logindb";
+    $password = "admin";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbName);
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: (" . $mysqli->errno . ") " . $conn->connect_error);
+      exit();
+    }
+
     $row = read_compare($conn, $username, $psw);
 
     if ($row != -1) {

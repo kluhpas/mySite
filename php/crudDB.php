@@ -64,14 +64,30 @@ function delete($conn, $email) {
 }
 
 /* insert row */
-function insert($conn, $name, $surname, $email, $birthDate, $gender, $psw) {
-  if ($stmt = $mysqli->prepare("INSERT INTO User (name, surname, email, birthday, gender, password) VALUES (?,?,?,?,?,?)")) { /* Check that there aren't errors */
-    $stmt->bind_param("ssssis", $name, $surname, $newEmail, $birthDate, $gender, $email); /* bind parameters for markers */
-    if ($stmt->execute()) {
-      $stmt->close();
-      echo "New records created successfully";
-      return 0;
-    }
+function insertUserBase($conn, $table, $firstName, $lastName, $bday, $bplace, $codfisc, $gender, $address, $postcode, $agon, $codTes, $certMedic, $phoneNum, $email) {
+  if ($stmt = $mysqli->prepare("INSERT INTO $table (nome, cognome, email, birthday, gender, password) VALUES (?,?,?,?,?,?)")) { /* Check that there aren't errors */
+    if ($stmt->bind_param("sssssississss", $firstName, $lastName, $bday, $bplace, $codfisc, $gender, $address, $postcode, $agon, $codTes, $certMedic, $phoneNum, $email)) /* bind parameters for markers */
+      if ($stmt->execute()) {
+        $id = $mysqli->insert_id;
+        $username = $lastName . "." . $id;
+        $stmt->close();
+        if (addUserLogin($username, $table) == 0)
+          return $id;
+      }
+  }
+  $stmt->close();
+  echo "Error: " . $sql . "<br> (" . $mysqli->errno . ") " . $conn->error; /* Show a message of error with SQL statement, error number and error text */
+  return -1;
+}
+
+function insertParent($conn, $firstNameParent, $lastNameParent, $phoneNumParent, $emailParent, $parentela)
+{
+  if ($stmt = $mysqli->prepare("INSERT INTO parente (nome, cognome, email, parentela) VALUES (?,?,?,?)")) { /* Check that there aren't errors */
+    if ($stmt->bind_param("ssss", $firstNameParent, $lastNameParent, $phoneNumParent, $emailParent, $parentela)) /* bind parameters for markers */
+      if ($stmt->execute()) {
+        $stmt->close();
+        return 0;
+      }
   }
   $stmt->close();
   echo "Error: " . $sql . "<br> (" . $mysqli->errno . ") " . $conn->error; /* Show a message of error with SQL statement, error number and error text */
@@ -88,6 +104,41 @@ function setPsw($conn, $psw, $IDutente) {
       }
   }
   $stmt->close();
+  return -1;
+}
+
+function addUserLogin($username, $privileges)
+{
+  if (strcmp($privileges, "allievo") == 0)
+		$privileges = 0;
+	else if (strcmp($privileges, "maestro") == 0)
+		$privileges = 1;
+  else
+    $privileges = 0;
+
+  $servername = "localhost";
+  $username = "root";
+  $dbName = "logindb";
+  $password = "admin";
+
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbName);
+
+  // Check connection
+  if ($conn->connect_error) {
+    die("Connection failed: (" . $mysqli->errno . ") " . $conn->connect_error);
+    exit();
+  }
+
+  if ($stmt = $mysqli->prepare("INSERT INTO user (username, privileges) VALUES (?,?)")) { /* Check that there aren't errors */
+    if ($stmt->bind_param("si", $username, $privileges)) /* bind parameters for markers */
+      if ($stmt->execute()) {
+        $stmt->close();
+        return 0;
+      }
+  }
+  $stmt->close();
+  echo "Error: " . $sql . "<br> (" . $mysqli->errno . ") " . $conn->error; /* Show a message of error with SQL statement, error number and error text */
   return -1;
 }
 ?>

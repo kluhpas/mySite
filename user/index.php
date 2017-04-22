@@ -1,12 +1,12 @@
-<?php require "checkSession.php"; ?>
+<?php require $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/checkSession.php"; ?>
 <!DOCTYPE html>
 <html lang="it-IT">
 <head>
   <title>My Site</title>
-  <?php include "head.php" ?>
+  <?php include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/head.php" ?>
 </head>
 <body>
-  <?php include "navbar.php"  ?>
+  <?php include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/navbar.php"  ?>
   <div class="container">
     <div class="row">
       <div class="col-md-4">

@@ -39,7 +39,7 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #1e1e1e url("../image/background.jpg") no-repeat bottom center;
+  background: #1e1e1e url("/mySite/images/background.jpg") no-repeat bottom center;
   background-blend-mode: screen;
   background-size: cover;
   -webkit-filter: grayscale(100%);

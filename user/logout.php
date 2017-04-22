@@ -7,6 +7,6 @@
   session_destroy();
 
   /* Redirect to a different page in the current directory that was requested */
-  header("Location: ../index.php");
+  header("Location: /mySite/index.php");
   exit;
 ?>

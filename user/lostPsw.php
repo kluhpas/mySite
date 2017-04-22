@@ -2,7 +2,7 @@
 <html lang="it-IT">
 <head>
   <title>My Site</title>
-  <?php include "head.php" ?>
+  <?php include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/head.php" ?>
 </head>
 <body style="padding-top: 5%">
   <div class="container">
@@ -36,7 +36,7 @@
       <div class="col-md-4"></div>
     </div> <!-- .row -->
   </div> <!-- .container -->
-  <script src="../js/index.js"></script>
+  <script src="/mySite/js/index.js"></script>
   <script>
   function checkFieldForm(tmp) {
     if (tmp.email.value == "") {

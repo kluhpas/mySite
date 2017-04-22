@@ -1,8 +1,8 @@
 <?php
 // Start the session
 session_start();
-include "checkDB.php";
-include "crudDB.php";
+include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/checkDB.php";
+include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/crudDB.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) == true && empty($_POST["username"]) == false && empty($_POST["psw"]) == false)
 {
@@ -28,19 +28,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) == true && e
 
     if ($row != -1) {
       $_SESSION["IDutente"] = $row["IDutente"];
-      header("Location: ./index.php")
+      header("Location: /mySite/user/index.php")
       $conn->close();
     }
     elseif ($row == -1) {
       $conn->close();
-      header("Location: ../index.php?error=true");
+      header("Location: /mySite/index.php?error=true");
     }
   }
   else {
-    header("Location: ../index.php?error=true");
+    header("Location: /mySite/index.php?error=true");
   }
 }
 else {
-  header("Location: ../index.php");
+  header("Location: /mySite/index.php");
 }
 ?>

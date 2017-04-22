@@ -1,30 +1,33 @@
-<?php require "checkSession.php"; ?>
+<?php require $_SERVER["DOCUMENT_ROOT"] . "/mySite/includes/checkSession.php"; ?>
 <!DOCTYPE html>
 <html lang="it-IT">
 <head>
   <title>Aggiungi utente</title>
-  <?php include "head.php" ?>
+  <?php include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/head.php" ?>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>;
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
-  <link href="../css/content/Content/bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-  <script src="../css/content/Scripts/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
+  <link href="/mySite/css/bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+  <script src="/mySite/js/Scripts/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
   <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
   This must be loaded before fileinput.min.js -->
-  <script src="../css/content/Scripts/plugins/sortable.min.js" type="text/javascript"></script>
+  <script src="/mySite/js/Scripts/plugins/sortable.min.js" type="text/javascript"></script>
   <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
   This must be loaded before fileinput.min.js -->
-  <script src="../css/content/Scripts/plugins/purify.min.js" type="text/javascript"></script>
+  <script src="/mySite/js/Scripts/plugins/purify.min.js" type="text/javascript"></script>
   <!-- the main fileinput plugin file -->
-  <script src="../css/content/Scripts/fileinput.min.js"></script>
+  <script src="/mySite/js/Scripts/fileinput.min.js"></script>
   <!-- bootstrap.js below is needed if you wish to zoom and view file content
   in a larger detailed modal dialog -->
-  <script src="../css/content/Content/bootstrap-fileinput/themes/fa/theme.js"></script>
-  <!-- optionally if you need translation for your language then include
+  <script src="/mySite/css/bootstrap-fileinput/themes/fa/theme.js"></script>
+  <!-- optionally if you need translation for your language then include $_SERVER["DOCUMENT_ROOT"] .
   locale file as mentioned below -->
-  <script src="../css/content/Scripts/locales/it.js"></script>
+  <script src="/mySite/js/Scripts/locales/it.js"></script>
+  <link rel="stylesheet" type="text/css" href="/mySite/css/style.css"> <!-- Mantenerlo per override css -->
 </head>
 <body>
-  <?php include "navbar.php" ?>
+  <?php include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/navbar.php" ?>
   <div class="container">
     <div class="row">
       <div class="col-md-2"></div> <!-- .col-md-2 -->
@@ -114,20 +117,11 @@
                   <input type="email" name="email"  id="email" class="form-control" placeholder="Inserisci la email" onblur="checkEmail(this)">
                 </div> <!-- .col-sm-9 -->
               </div> <!-- .form-group -->
-              <div class="form-group">
+              <div class="form-group" id="rdoAgon">
                 <label class="control-label col-sm-3" for="agon">Agonista *</label>
                 <div class="col-sm-9">
                   <label id="agon" class="radio-inline"><input type="radio" name="agon" value="yes">Sì</label>
                   <label id="agon" class="radio-inline"><input type="radio" name="agon" value="no">No</label>
-                </div> <!-- .col-sm-9 -->
-              </div> <!-- .form-group -->
-              <div class="form-group">
-                <label class="control-label col-sm-3" for="photo">Foto</label>
-                <div class="col-sm-9">
-                  <div id="kv-avatar-errors-1" class="center-block" style="display:none;"></div>
-                  <div class="kv-avatar center-block">
-                    <input id="avatar" name="avatar" type="file" class="file-loading">
-                  </div>
                 </div> <!-- .col-sm-9 -->
               </div> <!-- .form-group -->
               <div class="form-group">
@@ -188,9 +182,11 @@
   function selectUser(tmp) {
     if (tmp.value == "allievo") {
       document.getElementById("selFormHTML").style.display = "inherit";
+      document.getElementById("rdoAgon").style.display = "inherit";
     }
     else {
       document.getElementById("selFormHTML").style.display = "none";
+      document.getElementById("rdoAgon").style.display = "none";
       selectForm("base");
     }
   }
@@ -209,30 +205,6 @@
 
     }
   }
-
-  /*Funzione per upload foto*/
-  $("#avatar").fileinput({
-    resizeImage: true,
-    maxImageWidth: 500,
-    maxImageHeight: 500,
-    resizePreference: 'width',
-    overwriteInitial: true,
-    maxFileSize: 1500,
-    showClose: false,
-    showCaption: false,
-    browseOnZoneClick: true,
-    maxFileCount: 1,
-    browseLabel: '',
-    removeLabel: '',
-    browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
-    removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
-    removeTitle: 'Cancel or reset changes',
-    elErrorContainer: '#kv-avatar-errors-1',
-    msgErrorClass: 'alert alert-block alert-danger',
-    defaultPreviewContent: '<img src="../image/profile/no-profile-pic.jpg" alt="Your Avatar" style="width:160px">',
-    layoutTemplates: {main2: '{preview} {remove} {browse}'},
-    allowedFileExtensions: ["jpg", "png"]
-  });
 
   /* Funzione per invio dati al server*/
   var request;
@@ -262,7 +234,7 @@
     $inputs.prop("disabled", true);
     // Fire off the request to /form.php
     request = $.ajax({
-      url: "../ajax/addUser.php",
+      url: "/mySite/ajax/addUser.php",
       type: "post",
       data: serializedData
     });

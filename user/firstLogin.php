@@ -14,7 +14,7 @@ elseif (!isset($_GET["error"])) {
 <html lang="it-IT">
 <head>
   <title>My Site</title>
-  <?php include "head.php" ?>
+  <?php include $_SERVER["DOCUMENT_ROOT"] .  "/mySite/includes/head.php" ?>
 </head>
 <body style="padding-top: 5%">
   <div class="container">

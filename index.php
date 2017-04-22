@@ -4,25 +4,25 @@
   <title>My Site</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/manifest.json">
+  <link rel="apple-touch-icon" sizes="57x57" href="/mySite/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/mySite/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/mySite/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/mySite/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/mySite/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/mySite/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/mySite/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/mySite/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/mySite/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/mySite/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/mySite/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/mySite/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/mySite/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/mySite/favicon/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="/mySite/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="/mySite/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -37,7 +37,7 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <form class="form-horizontal" action="php/login.php" method="post" onsubmit="return checkFieldLogIn(this)">
+          <form class="form-horizontal" action="/mySite/user/login.php" method="post" onsubmit="return checkFieldLogIn(this)">
             <h1 class="text-center">LOGIN</h1>
             <?php showError(); ?>
             <input type="text" name="username" class="form-control" placeholder="Username"/>
@@ -50,7 +50,7 @@
       <div class="col-md-4"></div>
     </div> <!-- .row -->
   </div> <!-- .container -->
-  <script src="js/index.js"></script>
+  <script src="/mySite/js/index.js"></script>
 </body>
 </html>
 

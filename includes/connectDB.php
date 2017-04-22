@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$dbName = "logindb";
-
-switch ($_SESSION["Privileges"]) {
+$dbName = "dbdata";
+$a = "0";
+switch ($a) {
   case '0':
   $username = "admin";
   $password = "FabRuwek3zas";
@@ -30,7 +30,7 @@ $conn = new mysqli($servername, $username, $password, $dbName);
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: (" . $mysqli->errno . ") " . $conn->connect_error);
+  die("Connection failed: (" . $conn->errno . ") " . $conn->connect_error);
   exit();
 }
 ?>
